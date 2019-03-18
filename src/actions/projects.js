@@ -4,7 +4,6 @@ import ApiClient from '../api/client'
 export const FETCHED_ALL_PROJECTS = 'FETCHED_ALL_PROJECTS'
 export const FETCHED_PROJECT = 'FETCHED_PROJECT'
 export const CREATED_PROJECT = 'CREATED_PROJECT'
-export const DELETED_PROJECT = 'DELETED_PROJECT'
 
 const api = new ApiClient()
 
@@ -44,18 +43,5 @@ export const createProject = (data) => {
         })
       })
       .catch((error) => console.log(error))
-  }
-}
-
-export const deleteProject = (id) => {
-  return (dispatch) => {
-    api.delete(`/projects/${id}`)
-      .then((res) => {
-        dispatch({
-          type: DELETED_PROJECT,
-          payload: res.data
-        })
-      })
-      .catch((error) => console.log(error.message))
   }
 }
