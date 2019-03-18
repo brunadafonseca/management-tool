@@ -1,0 +1,61 @@
+@import '../assets/styles/variables.scss';
+$sidebar-width: 300px;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  padding: $spacing-default;
+  padding-top: 1.5rem;
+  z-index: 1;
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  height: 100%;
+  background-color: rgba(0,0,0,.85);
+  box-shadow: 0 2px 4px $color-neutral--dark;
+  transform: translateX(-100%);
+  transition: all .2s ease;
+  overflow: scroll;
+  text-align: center;
+}
+
+.sidebar--open {
+  transform: translateX(0);
+  left: 0;
+}
+
+.sidebar__project-title {
+  margin-left: $spacing-double;
+  color: white;
+  font-weight: bold;
+}
+
+.sidebar__list {
+  padding: $spacing-default;
+  padding-top: 0;
+  background-color: white;
+  max-height: 400px;
+  overflow-y: scroll;
+  text-align: left;
+}
+
+.sidebar__list-title {
+  position: sticky;
+  top: 0;
+  display: block;
+  margin-bottom: $spacing-default;
+  padding: $spacing-half;
+  padding-top: $spacing-default;
+  color: black;
+  font-size: 1rem;
+  background-color: white;
+  border-bottom: 1px solid $color-primary;
+}
+
+.sidebar__button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+}
