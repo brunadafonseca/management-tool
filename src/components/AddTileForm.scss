@@ -1,0 +1,14 @@
+@import '../assets/styles/variables.scss';
+
+.add-tile-form {
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  position: fixed;
+  bottom: $spacing-default;
+  left: $spacing-default;
+  max-width: 350px;
+}
+
+.add-tile-form--visible {
+  opacity: 1;
+}
