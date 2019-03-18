@@ -19,14 +19,13 @@ class Project extends Component {
   componentDidMount() {
     this.props.fetchAllProjects()
 
-    if (!this.props.projects.length) {
+    if (!this.props.projects.length && !this.props.currentProject) {
       this.setState({ showSidebar: true })
     }
   }
 
   createProject = newProject => {
     this.props.createProject(newProject)
-    this.setState({ showSidebar: false })
   }
 
   addTile = (newTile) => {
@@ -50,7 +49,6 @@ class Project extends Component {
   }
 
   handleDrag = (e, id) => {
-    e.currentTarget.style.opacity = .5
     e.dataTransfer.setData("text/plain", `${id}`)
   }
 
@@ -61,7 +59,6 @@ class Project extends Component {
   handleDrop = (e, id) => {
     e.preventDefault()
     const tileId = e.dataTransfer.getData("text")
-    console.log('dropped')
 
     this.updateTile(tileId, id)
   }
