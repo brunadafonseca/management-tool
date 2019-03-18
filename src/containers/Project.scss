@@ -1,0 +1,47 @@
+@import '../assets/styles/variables.scss';
+
+$sidebar-width: 250px;
+
+.project {
+  display: flex;
+  background-color: $color-neutral;
+  height: 100%;
+  position: relative;
+}
+
+.project__menu-button {
+  position: fixed;
+  z-index: 2;
+  top: $spacing-default;
+  left: $spacing-half;
+  display: block;
+}
+
+.project__phase {
+  min-width: $sidebar-width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: scroll;
+  background-color: $color-neutral;
+}
+
+.project__phase-title {
+  width: 100%;
+  height: $header-height;
+  line-height: $header-height;
+  text-align: center;
+}
+
+.project__phase-list {
+  min-width: $sidebar-width;
+  border-right: 1px solid $color-neutral--dark;
+  padding: $spacing-default;
+  height: 100%;
+  margin-top: 0;
+  border-top: 2px solid $color-primary;
+}
+
+.project__phase-list:first-child {
+  margin-top: $header-height;
+}
