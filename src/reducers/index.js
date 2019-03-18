@@ -1,4 +1,4 @@
-import { FETCHED_ALL_PROJECTS, FETCHED_PROJECT, CREATED_PROJECT, DELETED_PROJECT } from "../actions/projects";
+import { FETCHED_ALL_PROJECTS, FETCHED_PROJECT, CREATED_PROJECT } from "../actions/projects";
 import { ADDED_TILE, UPDATED_TILE, DELETED_TILE } from '../actions/tiles'
 
 const initialState = {
@@ -33,13 +33,7 @@ export default function(state = initialState, { type, payload }) {
       return {
         ...state,
         projects: [payload, ...state.projects],
-      }
-
-    case DELETED_PROJECT:
-      return {
-        ...state,
-        projects: state.projects.filter(project => project._id !== payload._id),
-        currentProject: state.projects[0],
+        currentProject: payload,
       }
 
     case ADDED_TILE:

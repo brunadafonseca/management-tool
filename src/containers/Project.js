@@ -26,6 +26,7 @@ class Project extends Component {
 
   createProject = newProject => {
     this.props.createProject(newProject)
+    this.setState({ showSidebar: false })
   }
 
   addTile = (newTile) => {
@@ -75,7 +76,6 @@ class Project extends Component {
 
   render() {
     const { projects, currentProject, projectPhases } = this.props
-    const hasProjects = projects.length
     const menuIcon = this.state.showSidebar ? CloseIcon : AddIcon
 
     return (
