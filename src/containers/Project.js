@@ -18,6 +18,10 @@ class Project extends Component {
 
   componentDidMount() {
     this.props.fetchAllProjects()
+
+    if (!this.props.projects.length) {
+      this.setState({ showSidebar: true })
+    }
   }
 
   createProject = newProject => {
@@ -74,71 +78,63 @@ class Project extends Component {
     const hasProjects = projects.length
     const menuIcon = this.state.showSidebar ? CloseIcon : AddIcon
 
-    if (hasProjects) {
-      return (
-        <div className="project">
-          <button
-            className="button icon-button icon-button--primary project__menu-button"
-            onClick={() => this.setState({ showSidebar: !this.state.showSidebar })}
-            style={{ backgroundImage: `url(${menuIcon})`}}
-          />
-          <Sidebar
-            open={this.state.showSidebar}
-            handleClick={(id) => this.props.fetchProject(id)}
-            projects={projects}
-            currentProjectId={currentProject._id}
-            currentProjectTitle={currentProject.title}
-          >
-            <CreateProjectForm createProject={this.createProject} />
-          </Sidebar>
+    return (
+      <div className="project">
+        <button
+          className="button icon-button icon-button--primary project__menu-button"
+          onClick={() => this.setState({ showSidebar: !this.state.showSidebar })}
+          style={{ backgroundImage: `url(${menuIcon})`}}
+        />
+        <Sidebar
+          open={this.state.showSidebar}
+          handleClick={(id) => this.props.fetchProject(id)}
+          projects={projects}
+          currentProjectId={currentProject._id}
+          currentProjectTitle={currentProject.title}
+        >
+          <CreateProjectForm createProject={this.createProject} />
+        </Sidebar>
 
-          <div className="project__phase">
+        <div className="project__phase">
+          <ul className="project__phase-list">
+            {this.tilesByPhaseId().map(tile => (
+              <TileCard
+                id={tile._id}
+                title={tile.title}
+                description={tile.description}
+                handleClick={() => this.deleteTile(tile._id)}
+                handleDrag={this.handleDrag}
+              />
+            ))}
+          </ul>
+        </div>
+
+        {projectPhases.map(phase => (
+          <div
+            className="project__phase"
+            key={phase.id}
+            onDragOver={(e) => this.onDragOver(e)}
+            onDrop={(e) => this.handleDrop(e, phase.id)}
+          >
+            <span className="project__phase-title">{phase.title}</span>
+
             <ul className="project__phase-list">
-              {this.tilesByPhaseId().map(tile => (
+              {this.tilesByPhaseId(phase.id).map(tile => (
                 <TileCard
                   id={tile._id}
                   title={tile.title}
                   description={tile.description}
                   handleClick={() => this.deleteTile(tile._id)}
                   handleDrag={this.handleDrag}
+                  handleDrop={this.handleDrop}
                 />
               ))}
             </ul>
           </div>
-
-          {projectPhases.map(phase => (
-            <div
-              className="project__phase"
-              key={phase.id}
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.handleDrop(e, phase.id)}
-            >
-              <span className="project__phase-title">{phase.title}</span>
-
-              <ul className="project__phase-list">
-                {this.tilesByPhaseId(phase.id).map(tile => (
-                  <TileCard
-                    id={tile._id}
-                    title={tile.title}
-                    description={tile.description}
-                    handleClick={() => this.deleteTile(tile._id)}
-                    handleDrag={this.handleDrag}
-                    handleDrop={this.handleDrop}
-                  />
-                ))}
-              </ul>
-            </div>
-          ))}
-          <AddTileForm addTile={this.addTile} visible={!this.state.showSidebar} />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <p>You have no projects yet. Start by creating one:</p>
-        </div>
-      )
-    }
+        ))}
+        <AddTileForm addTile={this.addTile} visible={!this.state.showSidebar} />
+      </div>
+    )
   }
 }
 
