@@ -2,5 +2,5 @@
 
 ```
 yarn install // or npm install
-yarn start // or npm start
+yarn start // or npm run start
 ```
