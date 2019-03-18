@@ -1,0 +1,35 @@
+@import './assets/styles/variables.scss';
+@import './assets/styles/forms.scss';
+@import './assets/styles/buttons.scss';
+@import './assets/styles/cards.scss';
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+}
+
+body {
+  background-color: $color-neutral;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
