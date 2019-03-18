@@ -1,0 +1,39 @@
+@import './variables.scss';
+
+textarea {
+  resize: none;
+}
+
+.form {
+  width: 100%;
+  padding: $spacing-default;
+}
+
+.form__title {
+  display: block;
+  margin-bottom: $spacing-default;
+}
+
+.form__input {
+  width: 100%;
+  padding: $spacing-half;
+  font-size: .875rem;
+  margin-bottom: $spacing-half;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  position: relative;
+  background: linear-gradient(to right, $color-primary, $color-primary);
+  background-size: 0% 3px;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  transition: background .2s ease;
+
+  &:focus {
+    outline: none;
+    background-size: 100% 3px;
+  }
+}
+
+.form__submit-button {
+  width: 100%;
+}

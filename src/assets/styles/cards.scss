@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+.card {
+  background-color: white;
+  margin-bottom: $spacing-half;
+  box-shadow: 1px 1px 4px $color-neutral--dark;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.card__header {
+  background-color: $color-primary;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-half;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.card__description {
+  padding: $spacing-default;
+  margin: 0;
+}

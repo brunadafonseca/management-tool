@@ -1,0 +1,58 @@
+@import './variables.scss';
+
+.button {
+  font-size: .875rem;
+  padding: $spacing-half;
+  letter-spacing: .2px;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button--primary {
+  border: none;
+  color: white;
+  border-radius: 2px;
+  background-color: $color-primary;
+  box-shadow: 1px 1px 4px $color-neutral--dark;
+  transition: background .2s ease;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-primary--dark;
+  }
+}
+
+.icon-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  background-size: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:hover,
+  &:focus,
+  &:active, {
+    background-color: $color-neutral--dark;
+  }
+}
+
+.icon-button--primary {
+  background-color: $color-primary;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-primary--dark;
+  }
+}
