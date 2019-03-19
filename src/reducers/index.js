@@ -37,16 +37,22 @@ export default function(state = initialState, { type, payload }) {
       }
 
     case ADDED_TILE:
-      return {
-        ...state,
-        projects: [...state.projects, payload],
-        currentProject: payload,
-      }
+    return {
+      ...state,
+      projects: [...state.projects, payload],
+      currentProject: payload,
+    }
 
     case UPDATED_TILE:
       return {
         ...state,
-        projects: [...state.projects, payload],
+        projects: state.projects.map(project => {
+          if (project._id === payload._id) {
+            return payload
+          }
+
+          return project
+        }),
         currentProject: payload,
       }
 
